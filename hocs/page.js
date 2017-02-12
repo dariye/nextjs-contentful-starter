@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 
+import { Provider } from 'react-redux'
+
+import { initStore } from '../store'
+
 export default (WrappedComponent) => {
   return class extends Component {
     static async getInitialProps(ctx) {
       const { req } = ctx
       const isServer = !!req
       const userAgent = req ? req.headers['user-agent'] : navigator.userAgent
+      const store = initStore({}, isServer)
 
       let pageProps = {}
       if(WrappedComponent.getInitialProps) {
@@ -14,6 +19,7 @@ export default (WrappedComponent) => {
 
       return {
         ...pageProps,
+        initialState: store.getState(),
         isServer,
         userAgent
       }
@@ -21,12 +27,15 @@ export default (WrappedComponent) => {
 
     constructor(props) {
       super(props) 
+      this.store = initStore(props.initialState, props.isServer)
     }
 
     render() {
       return (
         <div>
-          <WrappedComponent {...this.props} />
+          <Provider store={this.store}>
+            <WrappedComponent {...this.props} />
+          </Provider>
         </div>
       );
     }
