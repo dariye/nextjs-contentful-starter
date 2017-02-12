@@ -2,6 +2,7 @@
 const IndexPage = () => (
   <div>
     Howdy!
+    { TEST_ENV_VAR }
   </div>
 )
 
