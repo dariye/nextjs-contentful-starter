@@ -4,7 +4,7 @@
   "description": "A nextjs starter kit powered by contentful",
   "main": "server.js",
   "scripts": {
-    "dev": "node server.js",
+    "dev": "NODE_ENV=development CONTENTFUL_SPACE_ID=${CONTENTFUL_SPACE_ID} CONTENTFUL_ACCESS_TOKEN=${CONTENTFUL_ACCESS_TOKEN} node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -16,6 +16,7 @@
   "dependencies": {
     "contentful": "^3.8.1",
     "express": "^4.14.1",
+    "isomorphic-fetch": "^2.2.1",
     "next": "^2.0.0-beta.24",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",

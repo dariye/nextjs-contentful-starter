@@ -11,7 +11,6 @@ export default (WrappedComponent) => {
       const isServer = !!req
       const userAgent = req ? req.headers['user-agent'] : navigator.userAgent
       const store = initStore({}, isServer)
-
       let pageProps = {}
       if(WrappedComponent.getInitialProps) {
         pageProps = await WrappedComponent.getInitialProps(ctx);
@@ -41,5 +40,4 @@ export default (WrappedComponent) => {
     }
   }
 };
-
 
