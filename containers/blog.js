@@ -8,7 +8,7 @@ import { loadPageContent } from '../services/contentStore'
 import 'isomorphic-fetch'
 
 
-class IndexPage extends Component {
+class BlogPage extends Component {
   static async getInitialProps() {
     const client = await initClient(CONTENTFUL_SPACE_ID, CONTENTFUL_ACCESS_TOKEN)
     const content = await loadPageContent('pHomeA')
@@ -25,14 +25,7 @@ class IndexPage extends Component {
     return (
       <div>
         <Header /> 
-        { console.log(this.props.content) }
-        Howdy!
-        { TEST_ENV_VAR }
-        <br />
-        { CONTENTFUL_SPACE_ID }
-        <br />
-        {CONTENTFUL_ACCESS_TOKEN }
-        
+        Howdy! Bloggger
       </div>
     )
   }
@@ -40,5 +33,5 @@ class IndexPage extends Component {
 
 
 
-export default IndexPage
+export default BlogPage
 

@@ -42,7 +42,9 @@ function renderAndCache(req, res, pagePath, queryParams) {
   app.renderToHTML(req, res, pagePath, queryParams)
     .then((html) => {
       console.log(`CACHE MISS: ${req.url}`)
-      ssrCache.set(req.url, html)
+      if ( !dev ) {
+        ssrCache.set(req.url, html)
+      }
       res.send(html)
     })
   .catch((error) => {
